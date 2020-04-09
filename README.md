@@ -1,1 +1,1 @@
-## exercises from [this](https://github.com/P-Shumskiy/js-coursera.git) coursera course 
+## exercises from [this](https://www.coursera.org/learn/javascript-osnovy-i-funktsii) coursera course 
