@@ -1,0 +1,1 @@
+## exercises from [this](https://github.com/P-Shumskiy/js-coursera.git) coursera course 
