@@ -2,7 +2,7 @@
 var assert = require('assert');
 
 // Подключаем свою функцию
-var lib = require('./index.js');
+var lib = require('./index2.js');
 
 // Коллекция данных
 var friends = [
@@ -65,5 +65,77 @@ assert.deepEqual(result, [
     { name: 'Шерри', gender: 'Женский', email: 'danamcgee@example.com' },
     { name: 'Стелла', gender: 'Женский', email: 'waltersguzman@example.com' }
 ]);
+
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+  friends,
+  lib.select('name', 'gender', 'email'),
+  lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель']),
+  lib.filterIn('favoriteFruit', ['Яблоко', 'Банан']),
+);
+
+// Сравниваем полученный результат с ожидаемым
+assert.deepEqual(result, [
+    { name: 'Эмили', gender: 'Женский', email: 'example@example.com' },
+    { name: 'Мэт', gender: 'Мужской', email: 'danamcgee@example.com' },
+]);
+
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+  friends,
+  lib.select('name', 'gender', 'email'),
+  lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель']),
+  lib.filterIn('favoriteFruit', ['Яблоко', 'Банан']),
+  lib.select('name'),
+);
+
+// Сравниваем полученный результат с ожидаемым
+assert.deepEqual(result, [
+    { name: 'Эмили'},
+    { name: 'Мэт'}
+]);
+
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+  friends
+);
+
+// Сравниваем полученный результат с ожидаемым
+assert.deepEqual(result,
+  friends
+);
+
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+  friends,
+  lib.select('name', 'gender', 'email'),
+  lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель']),
+  lib.select('favoriteFruit')
+);
+
+// Сравниваем полученный результат с ожидаемым
+assert.deepEqual(result, []);
+
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+  friends,
+  lib.select('name', 'gender', 'email'),
+  lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель']),
+  lib.filterIn('favoriteFruit', ['Банан'])
+);
+
+// Сравниваем полученный результат с ожидаемым
+assert.deepEqual(result, []);
+
+// Выполняем выборку и фильтрацию с помощью нашего конструктора
+var result = lib.query(
+  friends,
+  lib.select('name', 'gender', 'email'),
+  lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель']),
+  lib.filterIn('favoriteFruit', ['Фейхоа'])
+);
+
+// Сравниваем полученный результат с ожидаемым
+assert.deepEqual(result, []);
 
 console.info('OK!');
